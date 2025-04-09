@@ -20,7 +20,7 @@ public class ObstacleSpawnManager : MonoBehaviour
         _respawnTime += Time.deltaTime;
         if (_respawnTime > _respawnTimeInterval)
         {
-            int randObject = Random.Range(0, 3);
+            int randObject = Random.Range(0, 1);
             float posX = Random.Range(-9, 9);
             float posY = Random.Range(-4, 4);
 

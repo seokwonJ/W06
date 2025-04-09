@@ -1,7 +1,9 @@
+using TMPro;
 using UnityEngine;
 
 public class Obstacle : MonoBehaviour
 {
+    public TMP_Text numText;
     public int trashId;
     public int speed;
     public Vector2 dir; 
@@ -12,6 +14,8 @@ public class Obstacle : MonoBehaviour
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
+        trashId = Random.Range(1, 10);
+        numText.text = trashId.ToString();
     }
 
     void FixedUpdate()
