@@ -13,6 +13,7 @@ public class PlayerAttack : MonoBehaviour
     public GameObject trash;
     public GameObject ice;
     public GameObject banana;
+    public Transform trashListObject;
 
     void Awake()
     {
@@ -54,15 +55,15 @@ public class PlayerAttack : MonoBehaviour
             {
                
                 case 1:
-                    shootObject = Instantiate(trash, transform.position + transform.right + transform.up * 0.2f * i, Quaternion.identity);
+                    shootObject = Instantiate(trash, transform.position + transform.right + transform.up * 0.2f * i, Quaternion.identity, trashListObject);
                     shootObject.tag = "Trash";
                     break;
                 case 2:
-                    shootObject = Instantiate(ice, transform.position + transform.right + transform.up * 0.2f * i, Quaternion.identity);
+                    shootObject = Instantiate(ice, transform.position + transform.right + transform.up * 0.2f * i, Quaternion.identity, trashListObject);
                     shootObject.tag = "Ice";
                     break;
                 case 3:
-                    shootObject = Instantiate(banana, transform.position + transform.right + transform.up * 0.2f * i, Quaternion.identity);
+                    shootObject = Instantiate(banana, transform.position + transform.right + transform.up * 0.2f * i, Quaternion.identity, trashListObject);
                     shootObject.tag = "Banana";
                     break;
                 default:

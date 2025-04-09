@@ -5,9 +5,10 @@ using UnityEngine;
 public class ObstacleSpawnManager : MonoBehaviour
 {
     public List<GameObject> obstacleList;
+    public Transform trashListObject;
     private float _respawnTimeInterval;
     private float _respawnTime;
-
+    
 
     public void Start()
     {
@@ -24,7 +25,7 @@ public class ObstacleSpawnManager : MonoBehaviour
             float posX = Random.Range(-9, 9);
             float posY = Random.Range(-4, 4);
 
-            Instantiate(obstacleList[randObject], new Vector3(posX, posY), Quaternion.identity);
+            Instantiate(obstacleList[randObject], new Vector3(posX, posY), Quaternion.identity, trashListObject);
             _respawnTime = 0;
         }
     }
