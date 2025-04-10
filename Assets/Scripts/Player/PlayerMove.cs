@@ -80,7 +80,10 @@ public class PlayerMove : MonoBehaviour
         if (inputVec != Vector2.zero)
         {
             float angle = Mathf.Atan2(inputVec.y, inputVec.x) * Mathf.Rad2Deg;
-            transform.rotation = Quaternion.Euler(0, 0, angle);
+            Quaternion targetRotation = Quaternion.Euler(0, 0, angle);
+
+            // 부드럽게 회전 (Lerp 또는 Slerp 사용 가능)
+            transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, Time.deltaTime * 30f);
         }
     }
 

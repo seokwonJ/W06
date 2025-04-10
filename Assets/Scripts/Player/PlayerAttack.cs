@@ -47,33 +47,38 @@ public class PlayerAttack : MonoBehaviour
     private void OnInteractPerformed(InputAction.CallbackContext context)
     {
  
-
-        for (int i=0;i < _playerController.trashList.Count;i++)
+        if (_playerController.trashList.Count > 0)
         {
-            GameObject shootObject = null ;
-            switch(_playerController.trashList[i])
+            for (int i = 0; i < _playerController.trashList.Count; i++)
             {
-               
-                case 1:
-                    shootObject = Instantiate(trash, transform.position + transform.right + transform.up * 0.2f * i, Quaternion.identity, trashListObject);
-                    shootObject.tag = "Trash";
-                    break;
-                case 2:
-                    shootObject = Instantiate(ice, transform.position + transform.right + transform.up * 0.2f * i, Quaternion.identity, trashListObject);
-                    shootObject.tag = "Ice";
-                    break;
-                case 3:
-                    shootObject = Instantiate(banana, transform.position + transform.right + transform.up * 0.2f * i, Quaternion.identity, trashListObject);
-                    shootObject.tag = "Banana";
-                    break;
-                default:
-                    break;
+                GameObject shootObject = null;
+                switch (_playerController.trashList[i])
+                {
+
+                    case 1:
+                        shootObject = Instantiate(trash, transform.position + transform.right * 0.8f + transform.up * 0.2f * i, Quaternion.identity, trashListObject);
+                        shootObject.tag = "Trash";
+                        break;
+                    case 2:
+                        shootObject = Instantiate(ice, transform.position + transform.right * 0.8f + transform.up * 0.2f * i, Quaternion.identity, trashListObject);
+                        shootObject.tag = "Ice";
+                        break;
+                    case 3:
+                        shootObject = Instantiate(banana, transform.position + transform.right * 0.8f + transform.up * 0.2f * i, Quaternion.identity, trashListObject);
+                        shootObject.tag = "Banana";
+                        break;
+                    default:
+                        break;
+                }
+                Obstacle obstacle = shootObject.GetComponent<Obstacle>();
+                obstacle.isAttack = true;
+                obstacle.dir = transform.right + transform.up * 0.2f * i;
             }
-            Obstacle obstacle = shootObject.GetComponent<Obstacle>();
-            obstacle.isAttack = true;
-            obstacle.dir = transform.right + transform.up * 0.2f * i;
+
+            Camera.main.GetComponent<CameraController>().StartShake(0.2f,0.03f);
+
+            _playerController.trashList.Clear();
         }
-        _playerController.trashList.Clear();
     } 
 
     private void OnInteractCanceled(InputAction.CallbackContext context)

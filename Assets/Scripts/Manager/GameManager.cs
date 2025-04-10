@@ -20,7 +20,7 @@ public class GameManager : MonoBehaviour
 
         if(_time  < 0 && !isEnd)
         {
-            Time.timeScale = 0;
+            Time.timeScale = 0.1f;
             isEnd = true;
             countingTrash();
         }
@@ -50,6 +50,7 @@ public class GameManager : MonoBehaviour
 
     public void Restart()
     {
+        Time.timeScale = 1;
         SceneManager.LoadScene(0);
     }
 }

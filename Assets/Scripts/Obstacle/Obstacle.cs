@@ -27,7 +27,6 @@ public class Obstacle : MonoBehaviour
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        print("collision");
         if ((collision.gameObject.layer == LayerMask.NameToLayer("Wall") || collision.gameObject.layer == LayerMask.NameToLayer("Player")) && transform.tag != "Obstacle")
         {
 
