@@ -141,6 +141,11 @@ public class PlayerMove : MonoBehaviour
 
     public void ChangetState(int num)
     {
+        if (_numState == 5 && num == 5 && _stateTime > _dashTime - 0.1)
+        {
+            _nowSpeed = 20;
+            _stateTime = 0;
+        }
         if (_numState == num) return;
         if (_numState >= 1 && _numState <= 3 && (num == 4 || num ==5)) return;
         _stateTime = 0;
