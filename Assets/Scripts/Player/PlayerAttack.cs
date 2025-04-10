@@ -9,6 +9,7 @@ public class PlayerAttack : MonoBehaviour
     private InputAction _interactAction;
 
     private PlayerController _playerController;
+    private PlayerMove _playMove;
 
     public GameObject trash;
     public GameObject ice;
@@ -18,17 +19,15 @@ public class PlayerAttack : MonoBehaviour
     void Awake()
     {
         _playerInput = GetComponent<PlayerInput>();
+        _playMove = GetComponent<PlayerMove>();
+        _playerController = GetComponent<PlayerController>();
+        _cleanerArea = GetComponentInChildren<CleanerArea>().gameObject;
 
         // 현재 Action Map에서 Interact 액션을 가져옴
         _interactAction = _playerInput.actions["Attack"];
 
         _interactAction.performed += OnInteractPerformed;
         _interactAction.canceled += OnInteractCanceled;
-    }
-
-    private void Start()
-    {
-        _playerController = GetComponent<PlayerController>();
     }
 
     void OnEnable()
@@ -76,9 +75,14 @@ public class PlayerAttack : MonoBehaviour
             }
 
             Camera.main.GetComponent<CameraController>().StartShake(0.2f,0.03f);
-
+            _playMove.ChangetState(4);
             _playerController.trashList.Clear();
         }
+        else
+        {
+            _playMove.ChangetState(5);
+        }
+        _cleanerArea.SetActive(false);
     } 
 
     private void OnInteractCanceled(InputAction.CallbackContext context)

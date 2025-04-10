@@ -20,7 +20,7 @@ public class GameManager : MonoBehaviour
 
         if(_time  < 0 && !isEnd)
         {
-            Time.timeScale = 0.1f;
+            Time.timeScale = 0f;
             isEnd = true;
             countingTrash();
         }

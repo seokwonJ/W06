@@ -1,4 +1,5 @@
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class CameraController : MonoBehaviour
@@ -18,6 +19,8 @@ public class CameraController : MonoBehaviour
 
             elapsed += Time.deltaTime;
 
+            if (Time.timeScale == 0) break;
+            
             yield return null;
         }
 
